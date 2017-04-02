@@ -78,9 +78,9 @@ public class redBall extends JComponent {
 					  red_dy = -red_dy;
 					  red_Y = radius;
 					  
-					  System.out.println("red_Y - radius < 0");
-					  System.out.println("red_dx =" + red_dx);
-					  System.out.println("red_X =" + red_X);
+//					  System.out.println("red_Y - radius < 0");
+//					  System.out.println("red_dx =" + red_dx);
+//					  System.out.println("red_X =" + red_X);
 					  
 					} 
 
@@ -90,9 +90,9 @@ public class redBall extends JComponent {
 					  red_dy = -red_dy;
 					  red_Y = height - radius;
 					  
-					  System.out.println("red_Y + radius > height");
-					  System.out.println("red_dx =" + red_dx);
-					  System.out.println("red_X =" + red_X);
+//					  System.out.println("red_Y + radius > height");
+//					  System.out.println("red_dx =" + red_dx);
+//					  System.out.println("red_X =" + red_X);
 					}
 					
 					repaint();
