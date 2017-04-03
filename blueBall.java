@@ -1,4 +1,4 @@
-package maxwellsDemon;
+package MaxwellsDemon;
 
 import java.awt.*;
 import javax.swing.*;
