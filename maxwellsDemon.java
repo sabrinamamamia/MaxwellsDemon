@@ -1,4 +1,4 @@
-package MaxwellsDemon;
+package maxwellsDemon;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,73 +7,55 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.util.Random;
 
-public class maxwellsDemon extends JPanel{
+public class maxwellsDemon extends JFrame{
 
-
+	JPanel chamberPanel; 	//2-part chamber
+	JPanel buttonPanel;		//buttons
+	
 	public maxwellsDemon() {
 		JFrame.setDefaultLookAndFeelDecorated(true);
-		JFrame frame = new JFrame("maxwellsDemon");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(new BorderLayout());
+		setSize(800, 400);
+		
+		chamberPanel = new chamberPanel();
+		add(chamberPanel, BorderLayout.CENTER);
 
-		JPanel panel = this;
-		OverlayLayout2 overlay = new OverlayLayout2(panel);
-		panel.setLayout(overlay);
+		buttonPanel = new JPanel();
+		buttonPanel.setSize(new Dimension(this.getWidth(),this.getHeight()/4));
+		add(buttonPanel, BorderLayout.SOUTH);
+		
 
-		JButton redBallBtn = new JButton("RED");
-		panel.add(redBallBtn);
+		JButton blueBallBtn = new JButton("Add Blue Particle");
+		buttonPanel.add(blueBallBtn);
 		
-		
-		JButton blueBallBtn = new JButton("BLUE");
-		panel.add(blueBallBtn);
-		
-		
+		JButton redBallBtn = new JButton("Add Red Particle");
+		buttonPanel.add(redBallBtn);
 		
 		redBallBtn.addActionListener(new ActionListener()
-				{
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						// TODO Auto-generated method stub
-						panel.add(new redBall());
-						panel.validate();
-						panel.repaint();
-					}}
-				);
-		
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				chamberPanel.add(new redBall());
+				chamberPanel.validate();
+				chamberPanel.repaint();
+			}}
+		);
 		blueBallBtn.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				panel.add(new blueBall());
-				panel.validate();
-				
+				chamberPanel.add(new blueBall());
+				chamberPanel.validate();
+				chamberPanel.repaint();
 			}}
 		);
 
-
-
-//		for (int i=0; i <= 10; i++) {
-//			panel.add(new redBall());
-//			panel.add(new blueBall());
-//		}
-
-		panel.setBorder(BorderFactory.createLineBorder(Color.black));
-		frame.setSize(600, 400);
-		frame.setContentPane(panel);
-		frame.setVisible(true);
+		
+		this.setVisible(true);
 	}
-
-	public void paint( Graphics g )
-	{
-		super.paint(g); // call to JFrame paint()
-
-		g.drawLine(300, 0, 300, 1000);  // xy xy from upper left   
-	}
-	
-
 
 	public static void main(String[] args) {
 		maxwellsDemon game = new maxwellsDemon();
-		
 	}
 }
