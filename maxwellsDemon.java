@@ -25,6 +25,7 @@ public class maxwellsDemon extends JFrame{
 		buttonPanel.setSize(new Dimension(this.getWidth(),this.getHeight()/4));
 		add(buttonPanel, BorderLayout.SOUTH);
 		
+		
 
 		JButton blueBallBtn = new JButton("Add Blue Particle");
 		buttonPanel.add(blueBallBtn);
@@ -35,6 +36,11 @@ public class maxwellsDemon extends JFrame{
 		JButton redBallBtn = new JButton("Add Red Particle");
 		buttonPanel.add(redBallBtn);
 		
+		for (int i = 0; i < 10; i++)
+		{
+			chamberPanel.add(new redBall());
+			chamberPanel.add(new blueBall());
+		}
 		
 		
 		redBallBtn.addActionListener(new ActionListener()
