@@ -1,4 +1,4 @@
-package maxwellsDemon;
+package MaxwellsDemon;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -29,8 +29,13 @@ public class maxwellsDemon extends JFrame{
 		JButton blueBallBtn = new JButton("Add Blue Particle");
 		buttonPanel.add(blueBallBtn);
 		
+		JButton resetBtn = new JButton("RESET");
+		buttonPanel.add(resetBtn);
+		
 		JButton redBallBtn = new JButton("Add Red Particle");
 		buttonPanel.add(redBallBtn);
+		
+		
 		
 		redBallBtn.addActionListener(new ActionListener()
 		{
@@ -51,6 +56,14 @@ public class maxwellsDemon extends JFrame{
 			}}
 		);
 
+		resetBtn.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				chamberPanel.removeAll();
+				chamberPanel.repaint();
+			}}
+		);
 		
 		this.setVisible(true);
 	}

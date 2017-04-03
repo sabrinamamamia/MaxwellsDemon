@@ -1,4 +1,4 @@
-package maxwellsDemon;
+package MaxwellsDemon;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
