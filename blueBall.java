@@ -6,21 +6,16 @@ import java.util.Random;
 
 public class blueBall extends JComponent {
 	
-	//Box height and width
+	//Panel height and width
 	int width;
 	int height;
 	 
 	//Ball size
-	float radius = 20; 
+	float radius = 8; 
 	float diameter = radius * 2;
-	 
-	//Center of balls
-	Random rand = new Random();
-	int  blue_randX = rand.nextInt(299) + 100;
-	int  blue_randY = rand.nextInt(20) + 1;
 	
-	float blue_X = radius + blue_randX;
-	float blue_Y = radius + blue_randY;
+	float blue_X = radius;
+	float blue_Y = radius;
 	 
 	//Direction (Speed)
 	//blue: slow
@@ -28,31 +23,46 @@ public class blueBall extends JComponent {
 	float blue_dy = 2;
 	
 	public blueBall() {
+		
 		Thread thread = new Thread() {
 			public void run() {
+				
+				Random rand = new Random();
+				blue_X += rand.nextInt(299)+1;
+				blue_Y += rand.nextInt(400)+1;
+				
 				while (true) {
+					
 					width = getWidth();
 					height = getHeight();
+					
+					if (width == 0 && height ==0) {
+						width = 600;
+						height = 400;
+					}
 
-					blue_X = blue_X + blue_dx;
-					blue_Y = blue_Y + blue_dy;
-
-					//*Bounce off wall cases for blue ball (same logic)*//
+					blue_X += blue_dx;
+					blue_Y += blue_dy;
+					
+					//Left wall
 					if (blue_X - radius < 0) {
 					  blue_dx = -blue_dx; 
 					  blue_X = radius; 
 					}
-
-					  if (blue_X + radius > width) {
+					
+					//Right wall
+					  if (blue_X + radius > width/2) {
 					  blue_dx = -blue_dx;
-					  blue_X = width - radius;
+					  blue_X = width/2 - radius;
 					}
-					  
+					
+					 //Bottom wall
 					if (blue_Y - radius < 0) {
 					  blue_dy = -blue_dy;
 					  blue_Y = radius;
 					} 
-
+					
+					//Top wall
 					else if (blue_Y + radius > height) {
 					  blue_dy = -blue_dy;
 					  blue_Y = height - radius;

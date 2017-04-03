@@ -5,9 +5,16 @@ import javax.swing.*;
 import java.util.Random;
 
 public class maxwellsDemon extends JPanel{
-
-public maxwellsDemon() {
 	
+public maxwellsDemon() {
+
+}
+
+public void paint( Graphics g )
+{
+   super.paint(g); // call to JFrame paint()
+   
+   g.drawLine(300, 0, 300, 1000);  // xy xy from upper left   
 }
 
 public static void main(String[] args) {
@@ -15,19 +22,18 @@ public static void main(String[] args) {
     JFrame.setDefaultLookAndFeelDecorated(true);
     JFrame frame = new JFrame("maxwellsDemon");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setSize(300, 200);
     
-    JPanel panel = new JPanel();
+    JPanel panel = new maxwellsDemon();
     OverlayLayout2 overlay = new OverlayLayout2(panel);
     panel.setLayout(overlay);
     
-	Random rand = new Random();
+    for (int i=0; i <= 10; i++) {
+    	panel.add(new redBall());
+    	panel.add(new blueBall());
+    }
     
-	//rand.nextInt(20) + 1)
-    panel.add(new redBall(100, 50));
-    panel.add(new redBall(20, 100));
-    panel.add(new blueBall());
-    panel.setVisible(true);
+    panel.setBorder(BorderFactory.createLineBorder(Color.black));
+    frame.setSize(600, 400);
     frame.setContentPane(panel);
     frame.setVisible(true);
   }
