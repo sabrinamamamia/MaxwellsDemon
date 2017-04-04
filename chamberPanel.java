@@ -9,20 +9,8 @@ import java.awt.event.MouseListener;
 import javax.swing.*;
 
 public class chamberPanel extends JPanel implements MouseListener{
-	
-	
-
 	int x1, x2, y1, y2;	//coordinates of the wall (2 lines)
 	int x3, x4, y3, y4;
-	
-	public int get_x1() { return x1; }
-	public int get_x2() { return x2; }
-	public int get_x3() { return x3; }
-	public int get_x4() { return x4; }
-	public int get_y1() { return y1; }
-	public int get_y2() { return y2; }
-	public int get_y3() { return y3; }
-	public int get_y4() { return y4; }
 	
 	chamberPanel() {
 		OverlayLayout2 overlay = new OverlayLayout2(this);
@@ -75,8 +63,9 @@ public class chamberPanel extends JPanel implements MouseListener{
 			x3 = this.getWidth()/2;
 			y3 = this.getHeight()/2;
 			x4 = this.getWidth()/2;
-			y4 = this.getHeight();
+			y4 = this.getHeight()+100;
 		}
+		
 		super.paint(g); // call to JFrame paint()   
 		g.drawLine(x1, y1, x2, y2);
 		g.drawLine(x3, y3, x4, y4);

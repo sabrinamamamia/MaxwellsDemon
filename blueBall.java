@@ -3,20 +3,14 @@ package MaxwellsDemon;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import javax.swing.*;
 import java.util.Random;
 
 public class blueBall extends JComponent {
-//public class blueBall extends JComponent implements MouseListener {
 	
 	//Panel height and width
-	int width;
-	int height;
-	
-	////Wall coordinates (2 lines)
-//	int x1, x2, y1, y2;	
-//	int x3, x4, y3, y4;
+	float width;
+	float height;
 	 
 	//Ball size
 	float radius = 8; 
@@ -25,15 +19,13 @@ public class blueBall extends JComponent {
 	float blue_X = radius;
 	float blue_Y = radius;
 	 
-	//Direction (Speed)
-	//blue: slow
+	//Direction (Speed): slow
 	float blue_dx = 2;
 	float blue_dy = 2;
 	
-	public blueBall() {
+	boolean otherSide = false;
 	
-//		addMouseListener(this);
-		
+	public blueBall() {
 		Thread thread = new Thread() {
 			public void run() {
 				
@@ -45,17 +37,7 @@ public class blueBall extends JComponent {
 					
 					width = getWidth();
 					height = getHeight();
-					
-//					x1 = getWidth()/2;
-//					y1 = 0;
-//					x2 = getWidth()/2;
-//					y2 = getHeight()/2;
-//					x3 = getWidth()/2;
-//					y3 = getHeight()/2;
-//					x4 = getWidth()/2;
-//					y4 = getHeight()+50;
 
-					
 					if (width == 0 || height == 0) {
 						width = 600;
 						height = 400;
@@ -66,26 +48,40 @@ public class blueBall extends JComponent {
 					
 					//Left wall
 					if (blue_X - radius < 0) {
-					  blue_dx = -blue_dx; 
-					  blue_X = radius; 
+						blue_dx = -blue_dx; 
+						blue_X = radius; 
 					}
 					
-//					//Right wall - line 1
-//					  if (blue_X + radius > x1 && blue_Y - radius < y1) {
-//					  blue_dx = -blue_dx;
-//					  blue_X = x1 - radius;
-//					}
-//					  
-//					//Right wall - line 2
-//					  if (blue_X + radius > x1 && blue_Y - radius < y3) {
-//					  blue_dx = -blue_dx;
-//					  blue_X = x1 - radius;
-//					}
+					//Middle wall 
+					if (blue_X + radius > width/2 && otherSide == false) {
+						if (maxwellsDemon.mousePressed == false ||
+							(blue_Y < height/3 || blue_Y > height-height/3)){
+							blue_dx = -blue_dx;
+							blue_X = width/2 - radius;
+						}
+						else 
+						{
+							otherSide = true;
+						}
+					}
 					
+					//Middle wall - other side
+					if (blue_X - radius < width/2 && otherSide == true) {
+						if (maxwellsDemon.mousePressed == false ||
+							(blue_Y < height/3 || blue_Y > height-height/3)){
+							blue_dx = -blue_dx;
+							blue_X = width/2 + radius;
+						}
+						else 
+						{
+							otherSide = false;
+						}
+					}
+										
 					//Right wall
-					  if (blue_X + radius > width/2) {
-					  blue_dx = -blue_dx;
-					  blue_X = width/2 - radius;
+					  if (blue_X + radius > width) {
+						  blue_dx = -blue_dx;
+						  blue_X = width - radius;
 					}
 					
 					 //Bottom wall
@@ -112,37 +108,6 @@ public class blueBall extends JComponent {
 		thread.start();
 	}
 	
-//	@Override
-//	public void mousePressed(MouseEvent e) {
-//		x1 = this.getWidth()/2;
-//		y1 = 0;
-//		x2 = this.getWidth()/2;
-//		y2 = this.getHeight()/3;
-//		x3 = this.getWidth()/2;
-//		y3 = this.getHeight() - this.getHeight()/3;
-//		x4 = this.getWidth()/2;
-//		y4 = this.getHeight();
-//	}
-//
-//	@Override
-//	public void mouseReleased(MouseEvent e) {
-//		x1 = this.getWidth()/2;
-//		y1 = 0;
-//		x2 = this.getWidth()/2;
-//		y2 = this.getHeight()/2;
-//		x3 = this.getWidth()/2;
-//		y3 = this.getHeight()/2;
-//		x4 = this.getWidth()/2;
-//		y4 = this.getHeight()+50;
-//	}
-//
-//	@Override
-//	public void mouseClicked(MouseEvent e) {}
-//	@Override
-//	public void mouseEntered(MouseEvent e) {}
-//	@Override
-//	public void mouseExited(MouseEvent e) {}
-//	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.setColor(Color.BLUE);
