@@ -9,6 +9,8 @@ import java.awt.event.MouseListener;
 import javax.swing.*;
 
 public class chamberPanel extends JPanel implements MouseListener{
+	
+	
 
 	int x1, x2, y1, y2;	//coordinates of the wall (2 lines)
 	int x3, x4, y3, y4;
@@ -39,6 +41,7 @@ public class chamberPanel extends JPanel implements MouseListener{
 		y3 = this.getHeight() - this.getHeight()/3;
 		x4 = this.getWidth()/2;
 		y4 = this.getHeight();
+		maxwellsDemon.mousePressed = true;
 	}
 
 	@Override
@@ -51,6 +54,7 @@ public class chamberPanel extends JPanel implements MouseListener{
 		y3 = this.getHeight()/2;
 		x4 = this.getWidth()/2;
 		y4 = this.getHeight()+50;
+		maxwellsDemon.mousePressed = false;
 	}
 
 	@Override

@@ -9,6 +9,8 @@ public class redBall extends JComponent {
 	//Panel height and width
 	int width;
 	int height;
+	
+	boolean otherSide = false;
 	 
 	//Ball size
 	float radius = 8; 
@@ -39,6 +41,9 @@ public class redBall extends JComponent {
 					//components have no width or height until they've been rendered.
 					//for this case, manually set width and height
 					
+					
+					
+
 					if (width == 0 && height == 0) {
 						width = 600;
 						height = 400;
@@ -47,13 +52,27 @@ public class redBall extends JComponent {
 					red_X += red_dx;
 					red_Y += red_dy;
 				
-					//Ball hits left wall
+					//Ball hits middle wall
 					//Set speed to 0 and X to radius, containing it within the panel
-					if (red_X - radius < width/2) {
-					  red_dx = -red_dx; 
-					  red_X = width/2 + radius; 
-
+					if (red_X - radius < width/2 && otherSide == false) {
+					  if (maxwellsDemon.mousePressed == false)
+					  {
+						red_dx = -red_dx; 
+					    red_X = width/2 + radius; 
+					  }
+					  else
+					  {
+						  otherSide = true;
+					  }
 					}
+					
+					//If the red ball is on the blue ball side
+					if (otherSide == true)
+					{
+						
+					}
+					
+					
 
 					//Ball hits right wall 
 					//Set speed to 0 and X to width - radius

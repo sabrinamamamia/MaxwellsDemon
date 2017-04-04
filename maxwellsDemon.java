@@ -7,8 +7,11 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.util.Random;
 
+
 public class maxwellsDemon extends JFrame{
 
+	public static boolean mousePressed = false;
+	
 	JPanel chamberPanel; 	//2-part chamber
 	JPanel buttonPanel;		//buttons
 	
