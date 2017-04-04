@@ -1,14 +1,22 @@
 package MaxwellsDemon;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.*;
 import java.util.Random;
 
 public class blueBall extends JComponent {
+//public class blueBall extends JComponent implements MouseListener {
 	
 	//Panel height and width
 	int width;
 	int height;
+	
+	////Wall coordinates (2 lines)
+//	int x1, x2, y1, y2;	
+//	int x3, x4, y3, y4;
 	 
 	//Ball size
 	float radius = 8; 
@@ -23,6 +31,8 @@ public class blueBall extends JComponent {
 	float blue_dy = 2;
 	
 	public blueBall() {
+	
+//		addMouseListener(this);
 		
 		Thread thread = new Thread() {
 			public void run() {
@@ -36,7 +46,17 @@ public class blueBall extends JComponent {
 					width = getWidth();
 					height = getHeight();
 					
-					if (width == 0 && height ==0) {
+//					x1 = getWidth()/2;
+//					y1 = 0;
+//					x2 = getWidth()/2;
+//					y2 = getHeight()/2;
+//					x3 = getWidth()/2;
+//					y3 = getHeight()/2;
+//					x4 = getWidth()/2;
+//					y4 = getHeight()+50;
+
+					
+					if (width == 0 || height == 0) {
 						width = 600;
 						height = 400;
 					}
@@ -49,6 +69,18 @@ public class blueBall extends JComponent {
 					  blue_dx = -blue_dx; 
 					  blue_X = radius; 
 					}
+					
+//					//Right wall - line 1
+//					  if (blue_X + radius > x1 && blue_Y - radius < y1) {
+//					  blue_dx = -blue_dx;
+//					  blue_X = x1 - radius;
+//					}
+//					  
+//					//Right wall - line 2
+//					  if (blue_X + radius > x1 && blue_Y - radius < y3) {
+//					  blue_dx = -blue_dx;
+//					  blue_X = x1 - radius;
+//					}
 					
 					//Right wall
 					  if (blue_X + radius > width/2) {
@@ -80,6 +112,37 @@ public class blueBall extends JComponent {
 		thread.start();
 	}
 	
+//	@Override
+//	public void mousePressed(MouseEvent e) {
+//		x1 = this.getWidth()/2;
+//		y1 = 0;
+//		x2 = this.getWidth()/2;
+//		y2 = this.getHeight()/3;
+//		x3 = this.getWidth()/2;
+//		y3 = this.getHeight() - this.getHeight()/3;
+//		x4 = this.getWidth()/2;
+//		y4 = this.getHeight();
+//	}
+//
+//	@Override
+//	public void mouseReleased(MouseEvent e) {
+//		x1 = this.getWidth()/2;
+//		y1 = 0;
+//		x2 = this.getWidth()/2;
+//		y2 = this.getHeight()/2;
+//		x3 = this.getWidth()/2;
+//		y3 = this.getHeight()/2;
+//		x4 = this.getWidth()/2;
+//		y4 = this.getHeight()+50;
+//	}
+//
+//	@Override
+//	public void mouseClicked(MouseEvent e) {}
+//	@Override
+//	public void mouseEntered(MouseEvent e) {}
+//	@Override
+//	public void mouseExited(MouseEvent e) {}
+//	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.setColor(Color.BLUE);

@@ -39,7 +39,7 @@ public class redBall extends JComponent {
 					//components have no width or height until they've been rendered.
 					//for this case, manually set width and height
 					
-					if (width == 0 && height ==0) {
+					if (width == 0 && height == 0) {
 						width = 600;
 						height = 400;
 					}
