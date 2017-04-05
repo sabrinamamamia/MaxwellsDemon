@@ -72,7 +72,6 @@ public class redBall extends JComponent {
 						}
 					}
 
-
 					//Middle wall - other side
 					if (red_X + radius > width/2 && otherSide == true) {
 						if (maxwellsDemon.mousePressed == false ||
