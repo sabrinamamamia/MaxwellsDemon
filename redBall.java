@@ -109,6 +109,11 @@ public class redBall extends JComponent {
 						red_Y = height - radius;
 
 					}
+					
+					maxwellsDemon.leftTemp.setText("Temperature: " + Double.toString(leftTemperature()));
+					maxwellsDemon.rightTemp.setText("Temperature: " + Double.toString(rightTemperature()));
+					
+					
 					repaint();
 
 					try {
@@ -125,6 +130,31 @@ public class redBall extends JComponent {
 		super.paintComponent(g);
 		g.setColor(Color.RED);
 		g.fillOval((int)(red_X-radius), (int)(red_Y-radius), (int)diameter, (int)diameter);
+	}
+	
+	public double leftTemperature()
+	{
+		double temp = 0;
+		double redVelocity = 72;
+		double blueVelocity = 8;
+		int totalCount = maxwellsDemon.leftRedCount + maxwellsDemon.leftBlueCount;
+		
+		temp = (redVelocity + blueVelocity)/ totalCount;
+		
+		return temp;
+	}
+	
+	public Double rightTemperature()
+	{
+		Double temp = (double) 0;
+		double redVelocity = 72;
+		double blueVelocity = 8;
+		int totalCount = maxwellsDemon.rightRedCount + maxwellsDemon.rightBlueCount;
+		
+		temp = (redVelocity + blueVelocity)/ totalCount;
+		
+	
+		return temp;
 	}
 
 }

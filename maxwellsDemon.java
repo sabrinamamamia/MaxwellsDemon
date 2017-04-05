@@ -16,6 +16,15 @@ public class maxwellsDemon extends JFrame{
 	JPanel buttonPanel;		//buttons
 	JPanel tempPanel;		//temperature panel 
 	
+	public static int leftBlueCount = 0;
+	public static int leftRedCount = 0;
+	public static int rightBlueCount = 0;
+	public static int rightRedCount = 0;
+	
+	public static JLabel leftTemp;
+	public static JLabel rightTemp;
+	
+	
 	int blueCount = 10;		//default number of balls
 	int redCount = 10;
 	int getblueCount() { return blueCount;}
@@ -49,18 +58,20 @@ public class maxwellsDemon extends JFrame{
 
 		//average of the squares of the velocities (blue velocity = 2 cm/s)
 		//JLabel blueTemp = new JLabel("Temperature:" + Double.toString(Math.sqrt(2)/blueCount));
-		JLabel blueTemp = new JLabel("Temperature: " + Double.toString((Math.sqrt(2)*blueCount)/blueCount));
-		tempPanel.add(blueTemp);
+		leftTemp = new JLabel("Temperature: ");
+		tempPanel.add(leftTemp);
 
 		//average of the squares of the velocities (red velocity = 2 cm/s)
 		//JLabel redTemp = new JLabel("Temperature:" + Double.toString(Math.sqrt(6)/redCount));
-		JLabel redTemp = new JLabel("Temperature: " + Double.toString((Math.sqrt(6)*redCount)/redCount));
-		tempPanel.add(redTemp);
+		rightTemp = new JLabel("Temperature: ");
+		tempPanel.add(rightTemp);
 
 		for (int i = 0; i < 10; i++)
 		{
 			chamberPanel.add(new redBall());
 			chamberPanel.add(new blueBall());
+			leftBlueCount++;
+			rightRedCount++;
 		}
 		
 		redBallBtn.addActionListener(new ActionListener()
@@ -70,9 +81,11 @@ public class maxwellsDemon extends JFrame{
 				chamberPanel.add(new redBall());
 				chamberPanel.validate();
 				chamberPanel.repaint();
-				redCount++;
-				System.out.println((Math.pow(6,2)*redCount)/redCount);
-				redTemp.setText("Temperature:" + Double.toString((Math.pow(6,2)*redCount)/redCount));
+				rightRedCount++;
+				
+//				redCount++;
+//				System.out.println((Math.pow(6,2)*redCount)/redCount);
+				//redTemp.setText("Temperature:" + Double.toString((Math.pow(6,2)*redCount)/redCount));
 			}}
 		);
 		blueBallBtn.addActionListener(new ActionListener()
@@ -82,8 +95,10 @@ public class maxwellsDemon extends JFrame{
 				chamberPanel.add(new blueBall());
 				chamberPanel.validate();
 				chamberPanel.repaint();
-				blueCount++;
-				blueTemp.setText("Temperature:" + Double.toString((Math.pow(2,2)*blueCount)/blueCount));
+				leftBlueCount++;
+				
+//				blueCount++;
+//				blueTemp.setText("Temperature:" + Double.toString((Math.pow(2,2)*blueCount)/blueCount));
 			}}
 		);
 
@@ -93,11 +108,17 @@ public class maxwellsDemon extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				chamberPanel.removeAll();
 				chamberPanel.repaint();
-				blueCount = 0;
-				redCount = 0;
+//				blueCount = 0;
+//				redCount = 0;
 				tempPanel.validate();
-				blueTemp.setText("Temperature:" + Double.toString(0));
-				redTemp.setText("Temperature:" + Double.toString(0));
+				
+				leftBlueCount = 0;
+				leftRedCount = 0;
+				rightBlueCount = 0;
+				rightRedCount = 0;
+				
+				leftTemp.setText("Temperature:" + Double.toString(0));
+				rightTemp.setText("Temperature:" + Double.toString(0));
 				
 			}}
 		);
@@ -108,4 +129,6 @@ public class maxwellsDemon extends JFrame{
 	public static void main(String[] args) {
 		maxwellsDemon game = new maxwellsDemon();
 	}
+	
+
 }

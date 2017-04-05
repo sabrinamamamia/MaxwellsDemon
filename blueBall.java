@@ -23,12 +23,13 @@ public class blueBall extends JComponent {
 	float blue_dx = 2;
 	float blue_dy = 2;
 	
-	float velocity;
 	
-	float getVelocity() {
-		velocity = blue_dx/blue_dy;
-		return velocity;
-	}
+//	float velocity;
+//	
+//	float getVelocity() {
+//		velocity = blue_dx/blue_dy;
+//		return velocity;
+//	}
 	
 	boolean otherSide = false;
 	
@@ -69,6 +70,8 @@ public class blueBall extends JComponent {
 						else 
 						{
 							otherSide = true;
+							maxwellsDemon.leftBlueCount--;
+							maxwellsDemon.rightBlueCount++;
 						}
 					}
 					
@@ -82,6 +85,8 @@ public class blueBall extends JComponent {
 						else 
 						{
 							otherSide = false;
+							maxwellsDemon.leftBlueCount++;
+							maxwellsDemon.rightBlueCount--;
 						}
 					}
 										
